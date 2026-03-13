@@ -1,0 +1,78 @@
+1.Print Entire Pascal Triangle
+
+class Solution {
+    public List<List<Integer>> generate(int numRows) {
+        List<List<Integer>> res=new ArrayList<>();
+        if(numRows==0) return res;
+        res.add(new ArrayList<>());
+        res.get(0).add(1);
+        for(int i=1;i<numRows;i++)
+        {
+            List<Integer> prev=res.get(i-1);
+            List<Integer> newr=new ArrayList<>();
+            newr.add(1);
+            for(int j=1;j<i;j++)
+            {
+                newr.add(prev.get(j-1)+prev.get(j));
+            }
+            newr.add(1);
+            res.add(newr);
+        }
+        return res;
+        
+    }
+}
+
+
+2.Find the Nth Row of Pascal Triangle
+
+class Solution {
+    ArrayList<Integer> nthRowOfPascalTriangle(int n) {
+        // code here
+        ArrayList<Integer> res=new ArrayList<>();
+        int val=1;
+        res.add(val);
+        for(int i=1;i<n;i++)
+        {
+            val=val*(n-i)/i;
+            res.add(val);
+        }
+        return res;
+    }
+}
+
+
+2.Pascal's Triangle II
+
+class Solution {
+    public List<Integer> getRow(int rowIndex) {
+        List<Integer> res=new ArrayList<>();
+        long val=1;
+        res.add((int)val);
+        for(int i=1;i<=rowIndex;i++)
+        {
+            val=val*((rowIndex+1)-i)/i;
+            res.add((int)val);
+        }
+        return res;
+    }
+}
+
+3.find element at row r and column c in pascals triangle
+
+class Solution {
+    public int nCr(int n, int r) {
+        int res = 1;
+
+        for(int i = 0; i < r; i++) {
+            res = res * (n - i);
+            res = res / (i + 1);
+        }
+
+        return res;
+    }
+
+    public int pascalElement(int r, int c) {
+        return nCr(r-1, c-1);
+    }
+}
